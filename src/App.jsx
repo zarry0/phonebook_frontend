@@ -37,8 +37,10 @@ const App = () => {
   const handleAdd = (e) => {
     e.preventDefault()
     
-    const foundPerson = persons.find(person => person.name === newName)
+    //const foundPerson = persons.find(person => person.name === newName)
+    const foundPerson = undefined;
     if (foundPerson === undefined) {
+      console.log("About to add a new person");
       const personObj = { 
         name : newName,
         number : newPhone
@@ -60,6 +62,7 @@ const App = () => {
       }, 3000)
 
     }else {
+      console.log("Repeated person");
       const confirmation = false;
       alert("That person is already added to the phonebook");
       // const confirmation = window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`);
