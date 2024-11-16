@@ -52,13 +52,20 @@ const App = () => {
           setPersons(newPersons)
           const filteredNewPerson = newName.toLowerCase().includes(filter.toLowerCase()) ? newPersons : personsFiltered
           setPersonsFiltered(filteredNewPerson)
+          setMessage(`Added ${newName}`)
+          setIsErrorMessage(false)
+          setTimeout(() => {
+            setMessage(null)
+          }, 3000)
       })
-
-      setMessage(`Added ${newName}`)
-      setIsErrorMessage(false)
-      setTimeout(() => {
-        setMessage(null)
-      }, 3000)
+      .catch(error => {
+        console.log(error.response)
+        setMessage(error.response.data.error)
+        setIsErrorMessage(true)
+        setTimeout(() => {
+          setMessage(null)
+        }, 3000)
+      })
 
     }else {
       console.log("Repeated person");
